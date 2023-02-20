@@ -16,13 +16,14 @@ let timePerFrame = 1 / (totalTime * 1000 / timeInterval); // Fraction of circle 
 let currentAngle = startAngle;
 
 // Set the circle color
-ctx.strokeStyle = 'red';
-ctx.lineWidth = 10;
+ctx.fillStyle = 'red';
 
 // Draw the initial circle
 ctx.beginPath();
+ctx.moveTo(centerX, centerY);
 ctx.arc(centerX, centerY, radius, startAngle, endAngle);
-ctx.stroke();
+ctx.lineTo(centerX, centerY);
+ctx.fill();
 
 // Update the circle every timeInterval milliseconds
 let intervalId = setInterval(() => {
@@ -35,8 +36,10 @@ let intervalId = setInterval(() => {
   
   // Draw the colored arc
   ctx.beginPath();
+  ctx.moveTo(centerX, centerY);
   ctx.arc(centerX, centerY, radius, startAngle, endAngle);
-  ctx.stroke();
+  ctx.lineTo(centerX, centerY);
+  ctx.fill();
   
   // Update the remaining time
   remainingTime -= timeInterval / 1000;
